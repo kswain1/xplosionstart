@@ -31,7 +31,7 @@ function initialize() {
     data = JSON.parse(data);    
     //data = JSON.parse(Buffer.from(data).toString());
     console.log('Received from server:', data);
-    var script = new PythonShell("test_two.py");
+    var script = new PythonShell("swing_velocity_rest.py");
     switch(data.msg) {
       case 'start':
         // TO DO: Activate the sensor
