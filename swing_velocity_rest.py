@@ -208,8 +208,8 @@ def computeInertialAcceleration(imu, orientMat):
     #inertialAcceleration[2] -= (-9.81)
 
 
-    print "inertial Acceleration:", inertialAcceleration
-    print "direction matrix:", orientMat
+    #print "inertial Acceleration:", inertialAcceleration
+    #print "direction matrix:", orientMat
 
     xinertialAcceleration = inertialAcceleration[0]
     yinertialAcceleration = inertialAcceleration[1]
@@ -229,10 +229,10 @@ def computeInertialVelocity(inertialAccelerationVec,sampleTimes):
     # Find velocity at various points in time. The current setup yields velocity
 
 
-    print "In computeInertial Velocity Function"
-    print inertialAccelerationVec
-    print "Length of inertialVec", len(inertialAccelerationVec)
-    print "Length of timeVector", len(sampleTimes)
+    #print "In computeInertial Velocity Function"
+    #print inertialAccelerationVec
+    #print "Length of inertialVec", len(inertialAccelerationVec)
+    #print "Length of timeVector", len(sampleTimes)
 
     InertialVelocity = trapz(inertialAccelerationVec, sampleTimes)  # I Beez in the trap
 
@@ -254,8 +254,8 @@ def computeVelocity(accelerationVector, timeVector):
 
     velocityHistory = [0]
     index = 1
-    print "The time vector is:"
-    print timeVector
+    #print "The time vector is:"
+    #print timeVector
     while index < len(accelerationVector):
 
         velocity_final = velocityHistory[index - 1] + ((accelerationVector[index] + accelerationVector[index-1])/2)*timeVector[index]
@@ -450,8 +450,8 @@ def sendData(data, interface=1):
     :param interface: integer denoting interface to select
     :return:
     """
-    print "My length is:"
-    print len(data)
+    #print "My length is:"
+    #print len(data)
 
     #Serial
     if interface is 0:
@@ -631,7 +631,7 @@ def streamSwingTrial():
             currentElapsedSampleTime = 0
             previousEulerParameters = e_initial
             index = 0
-            while (len(xAccelerationVector) < 50):
+            while (len(xAccelerationVector) < 100):
                     #read callibration angles
                # if ((keyboard() != 'kill') and (keyboard() != 'stop')):
                     calibration_angles.append(keyboard())
@@ -732,7 +732,7 @@ def streamSwingTrial():
 
 
             payload = {"accelx":xinertialAccelerationVector, "accely":yinertialAccelerationVector,
-                    "accelz":yinertialAccelerationVector,"start":"data"}
+                    "accelz":yinertialAccelerationVector,"start":"data","time":timeVector}
             import warnings; warnings.filterwarnings('ignore')
      
 
